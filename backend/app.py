@@ -9,7 +9,7 @@ def generate_script():
     # Here you would implement the OpenAI API call to generate a script
     data = request.json
     # For now, return a placeholder response
-    return jsonify({"script": "This is a generated script."})
+    return jsonify({"script": "This asdt."})
 
 @app.route('/generate-image', methods=['POST'])
 def generate_image():

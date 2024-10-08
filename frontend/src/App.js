@@ -1,25 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import { generateScript } from './api'; // Ensure this path is correct
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const [script, setScript] = useState('');
+
+    const handleGenerateScript = async () => {
+        try {
+            const response = await generateScript({ prompt: "Generate a short story." });
+            setScript(response.script); // Set the generated script
+        } catch (error) {
+            console.error('Error generating script:', error);
+        }
+    };
+
+    return (
+        <div>
+            <h1>Content Creator</h1>
+            <button onClick={handleGenerateScript}>Generate Script</button>
+            {script && (
+                <div>
+                    <h2>Generated Script:</h2>
+                    <p>{script}</p>
+                </div>
+            )}
+        </div>
+    );
 }
 
 export default App;
