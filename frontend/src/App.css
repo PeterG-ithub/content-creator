@@ -36,3 +36,16 @@
     transform: rotate(360deg);
   }
 }
+
+/* General layout for the app */
+.app-container {
+  display: flex;
+}
+
+/* Main content area should shift to the right to accommodate the SideNav */
+.main-content {
+  margin-left: 250px;  /* Same width as the SideNav */
+  padding: 20px;
+  width: 100%;
+  box-sizing: border-box;
+}
