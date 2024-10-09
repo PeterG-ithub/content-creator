@@ -1,30 +1,22 @@
-import React, { useState } from 'react';
-import { generateScript } from './api'; // Ensure this path is correct
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import HomePage from './pages/HomePage';
+import TextGenerationPage from './pages/TextGenerationPage';
+import ImageGenerationPage from './pages/ImageGenerationPage';
+import VideoEditingPage from './pages/VideoEditingPage';
 
-function App() {
-    const [script, setScript] = useState('');
-
-    const handleGenerateScript = async () => {
-        try {
-            const response = await generateScript({ prompt: "Generate a short story." });
-            setScript(response.script); // Set the generated script
-        } catch (error) {
-            console.error('Error generating script:', error);
-        }
-    };
-
-    return (
-        <div>
-            <h1>Content Creator</h1>
-            <button onClick={handleGenerateScript}>Generate Script</button>
-            {script && (
-                <div>
-                    <h2>Generated Script:</h2>
-                    <p>{script}</p>
-                </div>
-            )}
-        </div>
-    );
-}
+const App = () => {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/text-generation" element={<TextGenerationPage />} />
+        <Route path="/image-generation" element={<ImageGenerationPage />} />
+        <Route path="/video-editing" element={<VideoEditingPage />} />
+      </Routes>
+    </Router>
+  );
+};
 
 export default App;
+
